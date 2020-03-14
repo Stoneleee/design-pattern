@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01_单例模式</title>
+</head>
+
+<body>
+    <script>
+        // 单例模式 有时候我们需要创建对象，但是要多次共用一个对象
+        const getSingle = function (fn) {
+            let obj;
+            return function () {
+                return obj || (obj = fn.apply(fn, arguments));
+            }
+        }
+    </script>
+</body>
+
+</html>
