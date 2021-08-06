@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>普通单例</title>
-    </head>
-    <body>
-        <script>
-            /**
-             * 通过getInstance获取唯一对象
-             * 不足的地方是：
-             * 增加了这个类的不透明性
-             * 使用者必须知道这是一个单例类，调用getInstance方法获取
-             * 而不是正常的使用 new Xxx 获取
-             */
-            const Singleton = function (name) {
-                this.name = name;
-                this.instance = null;
-            };
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>普通单例</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 通过getInstance获取唯一对象
+       * 不足的地方是：
+       * 增加了这个类的不透明性
+       * 使用者必须知道这是一个单例类，调用getInstance方法获取
+       * 而不是正常的使用 new Xxx 获取
+       */
+      const Singleton = function (name) {
+        this.name = name;
+        this.instance = null;
+      };
 
-            Singleton.prototype.getName = function () {
-                return this.name;
-            };
+      Singleton.prototype.getName = function () {
+        return this.name;
+      };
 
-            Singleton.getInstance = function (name) {
-                if (!this.instance) {
-                    this.instance = new Singleton(name);
-                }
-                return this.instance;
-            };
+      Singleton.getInstance = function (name) {
+        if (!this.instance) {
+          this.instance = new Singleton(name);
+        }
+        return this.instance;
+      };
 
-            // or 利用闭包保存instance
-            // Singleton.getInstance = (function () {
-            //     let instance = null;
-            //     return function (name) {
-            //         if (!instance) {
-            //             instance = new Singleton(name);
-            //         }
-            //         return instance;
-            //     };
-            // })();
+      // or 利用闭包保存instance
+      // Singleton.getInstance = (function () {
+      //     let instance = null;
+      //     return function (name) {
+      //         if (!instance) {
+      //             instance = new Singleton(name);
+      //         }
+      //         return instance;
+      //     };
+      // })();
 
-            const a = Singleton.getInstance("test1");
-            const b = Singleton.getInstance("test2");
+      const a = Singleton.getInstance("test1");
+      const b = Singleton.getInstance("test2");
 
-            console.log(a === b); // <- true
-            console.log(b.getName()); // <- "test1"
-        </script>
-    </body>
+      console.log(a === b); // <- true
+      console.log(b.getName()); // <- "test1"
+    </script>
+  </body>
 </html>
